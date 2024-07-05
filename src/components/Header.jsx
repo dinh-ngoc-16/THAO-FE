@@ -13,6 +13,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const navigation = [
   { name: "Dashboard", href: "#", current: true },
@@ -114,17 +115,17 @@ export default function Example() {
                     />
                   </MenuButton>
                 ) : (
-                  <a
-                    key={1}
-                    onClick={() => setIsLogin(true)}
-                    href="#"
-                    className={classNames(
-                      "text-gray-300 hover:bg-gray-700 hover:text-white",
-                      "rounded-md px-3 py-2 text-sm font-medium",
-                    )}
-                  >
-                    Log In
-                  </a>
+                  <Link to="login">
+                    <div
+                      key={1}
+                      className={classNames(
+                        "text-gray-300 hover:bg-gray-700 hover:text-white",
+                        "rounded-md px-3 py-2 text-sm font-medium",
+                      )}
+                    >
+                      Log In
+                    </div>
+                  </Link>
                 )}
               </div>
               <MenuItems
