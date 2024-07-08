@@ -13,13 +13,13 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Products", href: "#", current: false },
-  { name: "Career", href: "#", current: false },
-  { name: "Support", href: "#", current: false },
+  { name: "Dashboard", href: "/", current: true },
+  { name: "Products", href: "/products", current: false },
+  { name: "Career", href: "/careers", current: false },
+  { name: "Support", href: "/support", current: false },
 ];
 
 function classNames(...classes) {
@@ -28,6 +28,14 @@ function classNames(...classes) {
 
 export default function Example() {
   const [isLogin, setIsLogin] = useState(false);
+  const location = useLocation();
+  for (let i = 0; i < navigation.length; i++) {
+    if (navigation[i].href === location.pathname) {
+      navigation[i].current = true;
+    } else {
+      navigation[i].current = false;
+    }
+  }
 
   return (
     <Disclosure as="nav" className="bg-gray-800 sticky w-screen top-0 z-10">
@@ -59,19 +67,19 @@ export default function Example() {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    aria-current={item.current ? "page" : undefined}
-                    className={classNames(
-                      item.current
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                      "rounded-md px-3 py-2 text-sm font-medium",
-                    )}
-                  >
-                    {item.name}
-                  </a>
+                  <Link key={item.name} to={item.href}>
+                    <div
+                      aria-current={item.current ? "page" : undefined}
+                      className={classNames(
+                        item.current
+                          ? "bg-gray-900 text-white"
+                          : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                        "rounded-md px-3 py-2 text-sm font-medium",
+                      )}
+                    >
+                      {item.name}
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -84,7 +92,7 @@ export default function Example() {
                   name="price"
                   type="text"
                   placeholder="Search"
-                  className="block w-full bg-white rounded-md border-0 py-1.5 pl-7 pr-20 text-white ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full bg-white rounded-md border-0 py-1.5 pl-7 pr-20 text-neutral-400 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -117,7 +125,7 @@ export default function Example() {
                 ) : (
                   <Link to="login">
                     <div
-                      key={1}
+                      key="login"
                       className={classNames(
                         "text-gray-300 hover:bg-gray-700 hover:text-white",
                         "rounded-md px-3 py-2 text-sm font-medium",

@@ -5,7 +5,7 @@ const Login = () => {
   return (
     <div className=" w-screen h-full flex flex-col justify-center items-center">
       <h1 className="mb-6">Login</h1>
-      <div className="input-group px-5 py-6 w-1/5 border-2 bg-slate-200">
+      <div className="input-group px-5 py-6 sm:w-full lg:w-1/5  border-2 bg-slate-200">
         <Input title="Username" maxLength={20} />
         <Input title="Password" type="password" maxLength={15} />
         <a className="ml-1" href="#">

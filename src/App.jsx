@@ -5,6 +5,8 @@ import Login from "./pages/Login";
 import Header from "./components/Header.jsx";
 import ThemeContext from "./context.js";
 import { useEffect, useState } from "react";
+import Products from "./pages/Products.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 function App() {
   const [isLoginPage, setIsLoginPage] = useState(false);
@@ -19,8 +21,10 @@ function App() {
     <ThemeContext.Provider value={isLoginPage}>
       {!isLoginPage ? <Header /> : <></>}
       <Routes>
+        <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/products" element={<Products />} />
       </Routes>
     </ThemeContext.Provider>
   );
