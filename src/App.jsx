@@ -12,6 +12,7 @@ function App() {
   const [isLoginPage, setIsLoginPage] = useState(false);
   const location = useLocation();
   useEffect(() => {
+    window.scrollTo(0, 0);
     location.pathname === "/login"
       ? setIsLoginPage(true)
       : setIsLoginPage(false);
