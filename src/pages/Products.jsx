@@ -125,11 +125,32 @@ const products = [
   },
   // More products...
 ];
-
+const data = [
+  {
+    sl: 12,
+    name: "Accessories",
+  },
+  {
+    sl: 3,
+    name: "Pen",
+  },
+  {
+    sl: 6,
+    name: "Papers",
+  },
+];
 const Products = () => {
   return (
     <div className="flex ">
-      <Sidebar className="w-1/4" />
+      <div className="flex flex-col w-1/4 mt-28">
+        {data.map((item) => (
+          <Sidebar
+            key={item.sl}
+            className="mt-6 rounded ml-3 py-3 px-5 cursor-pointer hover:bg-purple-700"
+            data={item}
+          />
+        ))}
+      </div>
       <div className="list-product w-3/4 px-4">
         <div className="max-w-7xl py-6 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold tracking-tight text-white-900">
