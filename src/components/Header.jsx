@@ -12,7 +12,7 @@ import {
   ShoppingCartIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const navigation = [
@@ -28,6 +28,7 @@ function classNames(...classes) {
 
 export default function Example() {
   const [isLogin, setIsLogin] = useState(false);
+
   const location = useLocation();
   for (let i = 0; i < navigation.length; i++) {
     if (navigation[i].href === location.pathname) {
@@ -36,6 +37,21 @@ export default function Example() {
       navigation[i].current = false;
     }
   }
+
+  useEffect(() => {
+    if (
+      localStorage.getItem("accessToken") &&
+      localStorage.getItem("accessToken") != ""
+    ) {
+      setIsLogin(true);
+    }
+  }, [isLogin]);
+
+  const handleLogOut = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("idUser");
+    setIsLogin(false);
+  };
 
   return (
     <Disclosure as="nav" className="bg-gray-800 sticky w-screen top-0 z-10">
@@ -99,7 +115,7 @@ export default function Example() {
             {isLogin ? (
               <button
                 type="button"
-                className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 mx-2"
               >
                 <span className="absolute -inset-1.5" />
                 <span className="sr-only">View notifications</span>
@@ -141,12 +157,12 @@ export default function Example() {
                 className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
               >
                 <MenuItem>
-                  <a
+                  <div
                     href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
+                    className="block px-4 cursor-pointer py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
                   >
                     Your Profile
-                  </a>
+                  </div>
                 </MenuItem>
                 {/* <MenuItem>
                   <a
@@ -157,13 +173,13 @@ export default function Example() {
                   </a>
                 </MenuItem> */}
                 <MenuItem>
-                  <a
-                    onClick={() => setIsLogin(false)}
+                  <div
+                    onClick={handleLogOut}
                     href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
+                    className="block px-4 py-2 cursor-pointer text-sm text-gray-700 data-[focus]:bg-gray-100"
                   >
                     Sign out
-                  </a>
+                  </div>
                 </MenuItem>
               </MenuItems>
             </Menu>

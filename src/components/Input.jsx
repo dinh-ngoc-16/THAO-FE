@@ -5,6 +5,7 @@ export default function Input({
   type = "text",
   maxLength = 10,
   className = "my-5",
+  onChange,
 }) {
   return (
     <div className={className}>
@@ -19,6 +20,7 @@ export default function Input({
           id={title}
           name={title}
           type={type}
+          onChange={onChange}
           maxLength={maxLength}
           className="block w-full rounded-md border-0 py-1.5 px-5 sm:px-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white"
         />
