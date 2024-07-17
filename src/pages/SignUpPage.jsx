@@ -12,7 +12,7 @@ const SignUpPage = () => {
         <Input title="Password" type="password" maxLength={15} />
         <Input title="Re-Enter Password" type="password" maxLength={15} />
         <div className="button-group mt-5 flex justify-between items-center mx-5">
-          <Link to="/">
+          <Link to="/login">
             <a className="text-gray-900 text-xl cursor-pointer hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 font-medium">
               Cancer
             </a>
