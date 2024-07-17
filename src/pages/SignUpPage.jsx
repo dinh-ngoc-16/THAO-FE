@@ -1,15 +1,25 @@
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import API from "../api";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({});
+  const [disabled, setDisabled] = useState(true);
 
   const handleOnChangeValue = (e, propertyName) => {
     setForm((prev) => ({ ...prev, [propertyName]: e.target.value }));
   };
+
+  useEffect(() => {
+    if (form.pass && form.pass === form["re-pass"]) {
+      console.log("ee");
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [form]);
 
   const sendSignUp = async () => {
     try {
@@ -50,19 +60,31 @@ const SignUpPage = () => {
           type="password"
           maxLength={15}
         />
-        {/* <Input title="Re-Enter Password" type="password" maxLength={15} /> */}
+        <Input
+          title="Re-Enter Password"
+          type="password"
+          maxLength={15}
+          onChange={(e) => handleOnChangeValue(e, "re-pass")}
+        />
         <div className="button-group mt-5 flex justify-between items-center mx-5">
           <Link to="/login">
             <a className="text-gray-900 text-xl cursor-pointer hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 font-medium">
               Cancer
             </a>
           </Link>
-          <div
-            onClick={sendSignUp}
-            className="text-gray-900 text-xl cursor-pointer bg-sky-300 hover:bg-sky-700 hover:text-white rounded-md px-3 py-2 font-medium"
-          >
-            Sign Up
-          </div>
+
+          {!disabled ? (
+            <button
+              onClick={sendSignUp}
+              className="text-gray-900 text-xl cursor-pointer bg-sky-300 hover:bg-sky-700 hover:text-white rounded-md px-3 py-2 font-medium"
+            >
+              Sign Up
+            </button>
+          ) : (
+            <button className="text-gray-500 text-xl cursor-not-allowed bg-sky-200  rounded-md px-3 py-2 font-medium">
+              Sign Up
+            </button>
+          )}
         </div>
       </div>
     </div>
