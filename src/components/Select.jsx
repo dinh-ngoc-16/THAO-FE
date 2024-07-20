@@ -31,8 +31,8 @@ export default function Select() {
 
   return (
     <Listbox value={selected} onChange={setSelected}>
-      <Label className="block text-sm font-medium leading-6 text-gray-900">
-        Assigned to
+      <Label className="block text-base font-medium leading-6 text-gray-900">
+        Gender
       </Label>
       <div className="relative mt-2">
         <ListboxButton className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-1 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
