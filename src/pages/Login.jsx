@@ -57,26 +57,27 @@ const Login = () => {
 
         <div className="flex items-center ml-1 mb-2">
           <input type="checkbox" className="rounded-md size-3 bg-white" />
-          <Link to="/">
-            <div className="ml-1 text-slate-500">Remember me</div>
+          <span className="ml-1 text-slate-500">Remember me</span>
+        </div>
+
+        <div className="border-2 border-slate-400"></div>
+        <div className="flex flex-col">
+          <Link to="/signup">
+            <span className="ml-1 mb-2 mt-2 text-sm">
+              Create a new account!
+            </span>
+          </Link>
+
+          <Link to="/" className="inline">
+            <span className="ml-1 mb-2 text-sm">Forgot password</span>
           </Link>
         </div>
 
-        <Link to="/signup">
-          <div className="ml-1 mb-2 text-slate-500">Forgot password</div>
-        </Link>
-
-        <div className="border-2 border-slate-400"></div>
-
-        <Link to="/signup">
-          <div className="ml-1 mb-2 mt-2 text-sm">Create a new account!</div>
-        </Link>
-
         <div className="button-group mt-5 flex justify-between items-center mx-5">
           <Link to="/">
-            <div className="text-gray-900 text-xl cursor-pointer hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 font-medium">
+            <span className="text-gray-900 text-xl cursor-pointer hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 font-medium">
               Cancer
-            </div>
+            </span>
           </Link>
           <div
             onClick={sendLogin}
