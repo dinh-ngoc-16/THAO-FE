@@ -2,11 +2,15 @@ import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import { useEffect, useState } from "react";
 import API from "../api";
+import Select from "../components/Select";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({});
   const [disabled, setDisabled] = useState(true);
+  const [show, setShow] = useState(false);
 
   const handleOnChangeValue = (e, propertyName) => {
     setForm((prev) => ({ ...prev, [propertyName]: e.target.value }));
@@ -48,24 +52,59 @@ const SignUpPage = () => {
           type="email"
           maxLength={20}
         />
-        <Input
-          title="Phone"
-          onChange={(e) => handleOnChangeValue(e, "phone")}
-          type="tel"
-          maxLength={12}
-        />
+
+        <Select />
+
+        <div className="relative">
+          <Input
+            title="Password"
+            onChange={(e) => handleOnChangeValue(e, "pass")}
+            type={show ? "text" : "password"}
+            maxLength={8}
+          />
+          <div
+            className="absolute top-10 right-2 cursor-pointer"
+            onClick={() => setShow(!show)}
+          >
+            {show ? (
+              <FontAwesomeIcon icon={faEye} color="black" />
+            ) : (
+              <FontAwesomeIcon icon={faEyeSlash} color="black" />
+            )}
+          </div>
+        </div>
+
+        <div className="relative">
+          <Input
+            title="Confirm password"
+            onChange={(e) => handleOnChangeValue(e, "re-pass")}
+            type={show ? "text" : "password"}
+            maxLength={8}
+          />
+          <div
+            className="absolute top-10 right-2 cursor-pointer"
+            onClick={() => setShow(!show)}
+          >
+            {show ? (
+              <FontAwesomeIcon icon={faEye} color="black" />
+            ) : (
+              <FontAwesomeIcon icon={faEyeSlash} color="black" />
+            )}
+          </div>
+        </div>
+        {/* 
         <Input
           title="Password"
           onChange={(e) => handleOnChangeValue(e, "pass")}
           type="password"
           maxLength={15}
-        />
-        <Input
+        /> */}
+        {/* <Input
           title="Re-Enter Password"
           type="password"
           maxLength={15}
           onChange={(e) => handleOnChangeValue(e, "re-pass")}
-        />
+        /> */}
         <div className="button-group mt-5 flex justify-between items-center mx-5">
           <Link to="/login">
             <a className="text-gray-900 text-xl cursor-pointer hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 font-medium">
