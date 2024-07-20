@@ -34,14 +34,14 @@ const Login = () => {
         <Input
           title="Username"
           onChange={(e) => handleOnChangeValue(e, "username")}
-          maxLength={20}
+          maxLength={15}
         />
         <div className="relative">
           <Input
             title="Password"
             onChange={(e) => handleOnChangeValue(e, "pass")}
             type={show ? "text" : "password"}
-            maxLength={15}
+            maxLength={8}
           />
           <div
             className="absolute top-10 right-2 cursor-pointer"
