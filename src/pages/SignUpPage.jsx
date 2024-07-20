@@ -8,12 +8,16 @@ import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({ gender: "M" });
   const [disabled, setDisabled] = useState(true);
   const [show, setShow] = useState(false);
 
   const handleOnChangeValue = (e, propertyName) => {
-    setForm((prev) => ({ ...prev, [propertyName]: e.target.value }));
+    if (propertyName === "gender") {
+      setForm((prev) => ({ ...prev, [propertyName]: e }));
+    } else {
+      setForm((prev) => ({ ...prev, [propertyName]: e.target.value }));
+    }
   };
 
   useEffect(() => {
@@ -39,7 +43,7 @@ const SignUpPage = () => {
   return (
     <div className=" w-screen h-full flex flex-col justify-center items-center">
       <h1 className="mb-6">Sign Up</h1>
-      <div className="input-group px-5 py-6 2xl:w-1/5 md:w-1/2 sm:w-full   border-2 bg-slate-200">
+      <div className="input-group px-5 py-6 2xl:w-1/5 md:w-1/2 sm:w-full border-2 bg-slate-200">
         <Input
           title="Username"
           onChange={(e) => handleOnChangeValue(e, "username")}
@@ -53,7 +57,7 @@ const SignUpPage = () => {
           maxLength={20}
         />
 
-        <Select />
+        <Select onChange={(e) => handleOnChangeValue(e, "gender")} />
 
         <div className="relative">
           <Input

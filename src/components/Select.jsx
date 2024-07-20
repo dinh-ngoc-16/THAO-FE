@@ -26,11 +26,18 @@ const people = [
   },
 ];
 
-export default function Select() {
+// eslint-disable-next-line react/prop-types
+export default function Select({ onChange }) {
   const [selected, setSelected] = useState(people[0]);
 
+  const handleOnChange = (e) => {
+    console.log(e);
+    setSelected(e);
+    onChange(e.value);
+  };
+
   return (
-    <Listbox value={selected} onChange={setSelected}>
+    <Listbox value={selected} onChange={handleOnChange}>
       <Label className="block text-base font-medium leading-6 text-gray-900">
         Gender
       </Label>
