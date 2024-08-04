@@ -69,9 +69,7 @@ const Login = () => {
           <div className="border-2 border-slate-400"></div>
           <div className="flex flex-col">
             <Link to="/signup">
-              <span className="ml-1 mb-2 mt-2 text-sm">
-                Create a new account!
-              </span>
+              <span className="ml-1 mb-2 mt-2 text-sm">Sign up account</span>
             </Link>
 
             <Link to="/" className="inline">
